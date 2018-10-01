@@ -15,8 +15,8 @@ class HeartsView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     private val renderer = HeartsRenderer(context)
 
     init {
-        attrs?.also {
-            context.obtainStyledAttributes(it, R.styleable.HeartsView).apply {
+        attrs?.let {
+            with(context.obtainStyledAttributes(it, R.styleable.HeartsView)){
                 val xMax = getFloat(R.styleable.HeartsView_x_max, HeartsRenderer.DEFAULT_CONFIG.xMax)
                 val sizeCoeff = getFloat(R.styleable.HeartsView_size_coeff, HeartsRenderer.DEFAULT_CONFIG.sizeCoeff)
                 val timeCoeff = getFloat(R.styleable.HeartsView_floating_time_coeff, HeartsRenderer.DEFAULT_CONFIG.floatingTimeCoeff)

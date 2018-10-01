@@ -44,10 +44,12 @@ class HeartsRenderer(context: Context) : Renderer(context) {
             Vector3((randSign * config.xMax * randF / 3.0), (yMax * randF / 1.5), 0.0),
             Vector3((-randSign * config.xMax * randF / 5.0), (yMax * randF / 1.0), 0.0)
         )
+
         val w = randF * 0.3f * config.sizeCoeff
 
         val dimenW: Float
         val dimenH: Float
+
         if (width >= height) {
             dimenW = w
             dimenH = height.toFloat() / width.toFloat() * dimenW
@@ -93,7 +95,8 @@ class HeartsRenderer(context: Context) : Renderer(context) {
                 transformable3D = pointSprite
             })
             currentScene.registerAnimation(this)
-        }.play()
+            play()
+        }
     }
 
     fun applyConfig(newConfig: Config) { config = newConfig }
@@ -117,7 +120,8 @@ class HeartsRenderer(context: Context) : Renderer(context) {
 
     override fun initScene() { currentCamera.z = 4.2 }
 
-    override fun onOffsetsChanged(xOffset: Float, yOffset: Float, xOffsetStep: Float, yOffsetStep: Float, xPixelOffset: Int, yPixelOffset: Int) = Unit
+    override fun onOffsetsChanged(xOffset: Float, yOffset: Float, xOffsetStep: Float,
+                                  yOffsetStep: Float, xPixelOffset: Int, yPixelOffset: Int) = Unit
 
     override fun onTouchEvent(event: MotionEvent) = Unit
 
@@ -136,6 +140,7 @@ class HeartsRenderer(context: Context) : Renderer(context) {
 
     companion object {
         private const val TAG = "HEARTS_RENDERER"
+        @JvmField
         val DEFAULT_CONFIG = Config(5f, 2f, 1f)
     }
 }
